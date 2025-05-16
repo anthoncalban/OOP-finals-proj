@@ -12,7 +12,7 @@ public class ResumeBuilder {
 
     public static void main(String[] args) {
         JFrame frame = new JFrame("Resume Builder");
-        frame.setSize(500, 900);  // Adjusted the frame size to ensure buttons are visible
+        frame.setSize(500, 900);  
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(null);
 
@@ -41,7 +41,7 @@ public class ResumeBuilder {
         phoneField.setBounds(130, 100, 300, 25);
         frame.add(phoneField);
 
-        // New fields in the middle: Address, Awards and Honors
+        
         JLabel addressLabel = new JLabel("Address:");
         addressLabel.setBounds(20, 140, 100, 25);
         frame.add(addressLabel);
@@ -50,7 +50,6 @@ public class ResumeBuilder {
         addressField.setBounds(130, 140, 300, 25);
         frame.add(addressField);
 
-        // Education Info
         JLabel educationLabel = new JLabel("Education:");
         educationLabel.setBounds(20, 180, 100, 25);
         frame.add(educationLabel);
@@ -60,7 +59,6 @@ public class ResumeBuilder {
         educationScroll.setBounds(130, 180, 300, 80);
         frame.add(educationScroll);
 
-        // Work Experience
         JLabel experienceLabel = new JLabel("Experience:");
         experienceLabel.setBounds(20, 270, 100, 25);
         frame.add(experienceLabel);
@@ -70,7 +68,6 @@ public class ResumeBuilder {
         experienceScroll.setBounds(130, 270, 300, 80);
         frame.add(experienceScroll);
 
-        // Skills Info
         JLabel skillsLabel = new JLabel("Skills:");
         skillsLabel.setBounds(20, 360, 100, 25);
         frame.add(skillsLabel);
@@ -80,7 +77,6 @@ public class ResumeBuilder {
         skillsScroll.setBounds(130, 360, 300, 80);
         frame.add(skillsScroll);
 
-        // New field for Awards and Honors
         JLabel awardsLabel = new JLabel("Awards and Honors:");
         awardsLabel.setBounds(20, 450, 150, 25);
         frame.add(awardsLabel);
@@ -89,7 +85,6 @@ public class ResumeBuilder {
         awardsField.setBounds(130, 450, 300, 25);
         frame.add(awardsField);
 
-        // References Info (Last)
         JLabel referencesLabel = new JLabel("References:");
         referencesLabel.setBounds(20, 490, 100, 25);
         frame.add(referencesLabel);
@@ -98,14 +93,12 @@ public class ResumeBuilder {
         referencesField.setBounds(130, 490, 300, 25);
         frame.add(referencesField);
 
-        // Resume Display Area
         JTextArea resumeArea = new JTextArea();
         resumeArea.setEditable(false);
         JScrollPane scrollPane = new JScrollPane(resumeArea);
         scrollPane.setBounds(20, 530, 440, 150);
         frame.add(scrollPane);
 
-        // Buttons
         JButton generateButton = new JButton("Generate Resume");
         generateButton.setBounds(150, 700, 180, 30);  // Adjusted the position of the button
         frame.add(generateButton);
@@ -114,7 +107,6 @@ public class ResumeBuilder {
         exportButton.setBounds(150, 740, 180, 30);  // Adjusted the position of the button
         frame.add(exportButton);
 
-        // Generate Resume Action
         generateButton.addActionListener(e -> {
             String name = nameField.getText();
             String email = emailField.getText();
@@ -141,7 +133,6 @@ public class ResumeBuilder {
             resumeArea.setText(resume.toString());
         });
 
-        // Export as PDF Action
         exportButton.addActionListener(e -> {
             JFileChooser fileChooser = new JFileChooser();
             fileChooser.setDialogTitle("Save Resume as PDF");
@@ -157,20 +148,17 @@ public class ResumeBuilder {
                     PdfWriter.getInstance(document, new FileOutputStream(filePath));
                     document.open();
 
-                    // Define fonts
                     Font titleFont = FontFactory.getFont(FontFactory.HELVETICA_BOLD, 22, BaseColor.DARK_GRAY);  // Dark gray color for title
                     Font labelFont = FontFactory.getFont(FontFactory.HELVETICA_BOLD, 14, BaseColor.BLUE);     // Blue color for labels
                     Font textFont = FontFactory.getFont(FontFactory.HELVETICA, 12, BaseColor.BLACK);         // Black for normal text
                     Font referencesFont = FontFactory.getFont(FontFactory.HELVETICA_BOLD, 12, BaseColor.BLACK);  // Clear and bold for references section
 
-                    // Add Name as title
                     Paragraph nameTitle = new Paragraph(nameField.getText(), titleFont);
-                    nameTitle.setAlignment(Element.ALIGN_CENTER);  // Center the name
+                    nameTitle.setAlignment(Element.ALIGN_CENTER);  
                     document.add(nameTitle);
                     document.add(new Paragraph("\n"));
                     document.add(new Paragraph("\n"));
 
-                    // Personal Info Section (Email, Phone, Address)
                     document.add(new Paragraph("Email:", labelFont));
                     document.add(new Paragraph(emailField.getText(), textFont));
                     document.add(new Paragraph("Phone:", labelFont));
@@ -179,27 +167,22 @@ public class ResumeBuilder {
                     document.add(new Paragraph(addressField.getText(), textFont));
                     document.add(new Paragraph("\n"));
 
-                    // Education Section
                     document.add(new Paragraph("Education:", labelFont));
                     document.add(new Paragraph(educationArea.getText(), textFont));
                     document.add(new Paragraph("\n"));
 
-                    // Experience Section
                     document.add(new Paragraph("Experience:", labelFont));
                     document.add(new Paragraph(experienceArea.getText(), textFont));
                     document.add(new Paragraph("\n"));
 
-                    // Skills Section
                     document.add(new Paragraph("Skills:", labelFont));
                     document.add(new Paragraph(skillsArea.getText(), textFont));
                     document.add(new Paragraph("\n"));
 
-                    // Awards and Honors Section
                     document.add(new Paragraph("Awards and Honors:", labelFont));
                     document.add(new Paragraph(awardsField.getText(), textFont));
                     document.add(new Paragraph("\n"));
 
-                    // References Section (Last)
                     document.add(new Paragraph("References:", referencesFont));
                     document.add(new Paragraph(referencesField.getText(), referencesFont));
 
